@@ -8,20 +8,23 @@ use App\Models\Caminhao;
 
 class CaminhaoController extends Controller
 {
-    public function FormularioCadastro(){
+    public function FormularioCadastro()
+    {
         return view('cadastrarCaminhao');
     }
 
-    public function MostrarEditarCaminhao(){
+    public function MostrarEditarCaminhao()
+    {
 
         $dadosCaminhao = Caminhao::all();
-        return view('editarCaminhao',[
+        return view('editarCaminhao', [
             'registrosCaminhao' => $dadosCaminhao
         ]);
     }
-    
 
-    public function SalvarBanco(Request $request){
+
+    public function SalvarBanco(Request $request)
+    {
         $dadosCaminhao = $request->validate([
             'modelos' => 'string|required',
             'marca' => 'string|required',
@@ -29,19 +32,20 @@ class CaminhaoController extends Controller
             'cor' => 'string|required',
             'valor' => 'string|required'
         ]);
-        
+
         Caminhao::create($dadosCaminhao);
 
         return Redirect::route('home');
     }
 
-        public function ApagarBancoCaminhao(Caminhao $registrosCaminhao){
-            $registrosCaminhao-> delete();
-         
-            return Redirect::route('editar-caminhao');           
-               
-        }
-        public function MostrarAlterarCaminhao(Caminhao $registrosCaminhao){
-            return view('alterarCaminhao',['registrosCaminhoes' => registrosCaminhoes]);
-        }
+    public function ApagarBancoCaminhao(Caminhao $registrosCaminhao)
+    {
+        $registrosCaminhao->delete();
+
+        return Redirect::route('editar-caminhao');
+    }
+    public function MostrarAlterarCaminhao(Caminhao $registrosCaminhoes)
+    {
+        return view('alterarCaminhao', ['registrosCaminhoes' => $registrosCaminhoes]);
+    }
 }

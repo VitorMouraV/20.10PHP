@@ -34,4 +34,4 @@ Route::delete('/editar-caminhao/{registrosCaminhao}',[CaminhaoController::class,
 Route::delete('/editar-caminhao/{registrosCaminhao}',[CarroController::class,'ApagarBancoCarro'])->name('apagar-carro');
 
 //alterar
-Route::get('/alterar-caminhao',[CaminhaoController::class,'MostrarAlterarCaminhao'])->name('alterar-caminhao');
+Route::get('/alterar-caminhao/{registrosCaminhoes}',[CaminhaoController::class,'MostrarAlterarCaminhao'])->name('alterar-caminhao');
